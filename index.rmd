@@ -209,7 +209,7 @@ cat(" Out-of-sample error for random forest  (rf) :", 1-accuracy.rf)
 
 
 
-All features data utilized were numerical data from accelerometers etc. 
+Features data were numerical data from accelerometers etc. 
 
 - Data were cleaned as discussed above
 
