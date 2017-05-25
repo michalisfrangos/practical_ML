@@ -93,9 +93,9 @@ ggplot(df,aes(x = value)) + facet_wrap(~variable,scales = "free") + geom_histogr
 
 #  Reducing the parameter space
 
-To reduce the parameter space by keeping the dominant componenets of the parameter space I use Principal Component Analysis (PCA) given the training set to find the principle components.
+To reduce the parameter space by keeping the dominant componenets of the parameter space I use Principal Component Analysis (PCA) given the training.
 
-If PCA flag is on apply PCA to the training and testing dataset.  
+If PCA flag is 'on' apply PCA to the training and testing dataset.  
 
 
 ```r
@@ -119,7 +119,7 @@ cat(" Dimension of training data :", dim(training.active))
 # Cross validation
 The caret package has the option to set the train options and do cross validation using the training set. I set the training control for cross-Validation to 5 folds for all models for computational efficiency. 
 
-Even though not necessary, I repeat cross-validation manually based on validation data obtained from partitioning the training data as follows.
+Even though not necessary, I repeat cross-validation manually based on validation data obtained from partitioning the training data.
 
 
 
@@ -258,12 +258,12 @@ plot(modelFit.rf$finalModel)
 
 
 
-All collected data based on which the prediction model was build were numerical data from accelerometers etc. 
+All features data considered were numerical data from accelerometers etc. 
 
 - Data were cleaned as discussed above
 
 
-As this exercise is just for demontration,I test just two methods:
+As this exercise is just for demontration, I tried two methods:
 
 - Decision Tree (rpart)
 - Random Forest (rf)
@@ -271,16 +271,16 @@ As this exercise is just for demontration,I test just two methods:
 
 Cross validation:
 
-- I have used the training data for cross validation. 
-- Based on the validation tests, based on this project's data, the decision tree (rpart) has a poorer performance than random forest (rf).
+- Based on the validation tests given this project's data, the decision tree (rpart) has a poorer performance compared to random forest (rf).
 
 Computational complexity:
 
 - I have set the number of trees in random forest to 50.
-- I used PCA to reduce the parameter space. Note that PCA does not improve the accuracy of prediction in this example, however I used it as an example to reduce the parameter space, which can be helpful in larger datasets.
+- I used PCA to reduce the parameter space. 
+- PCA does not improve the prediction accuracy in this example; however, I used it as an example to reduce the parameter space, which can be helpful in larger datasets.
 
 # Testing 
-The prediction of the untouched testing set with random forest: 
+The prediction of the testing set via random forest: 
 
 ```
 ##  [1] B A A A A E D B A A B C B A E E A B B B

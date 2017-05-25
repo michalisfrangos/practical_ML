@@ -294,8 +294,8 @@ ggplot(df,aes(x = value)) + facet_wrap(~variable,scales = &quot;free&quot;) + ge
 </div>
 <div id="reducing-the-parameter-space" class="section level1">
 <h1><span class="header-section-number">3</span> Reducing the parameter space</h1>
-<p>To reduce the parameter space by keeping the dominant componenets of the parameter space I use Principal Component Analysis (PCA) given the training set to find the principle components.</p>
-<p>If PCA flag is on apply PCA to the training and testing dataset.</p>
+<p>To reduce the parameter space by keeping the dominant componenets of the parameter space I use Principal Component Analysis (PCA) given the training.</p>
+<p>If PCA flag is ‘on’ apply PCA to the training and testing dataset.</p>
 <pre class="r"><code>flag_PCA = TRUE
 if (flag_PCA){
   preProc = preProcess(training,method = 'pca',thresh=0.9)
@@ -312,7 +312,7 @@ cat(&quot; Dimension of training data :&quot;, dim(training.active))</code></pre
 <div id="cross-validation" class="section level1">
 <h1><span class="header-section-number">4</span> Cross validation</h1>
 <p>The caret package has the option to set the train options and do cross validation using the training set. I set the training control for cross-Validation to 5 folds for all models for computational efficiency.</p>
-<p>Even though not necessary, I repeat cross-validation manually based on validation data obtained from partitioning the training data as follows.</p>
+<p>Even though not necessary, I repeat cross-validation manually based on validation data obtained from partitioning the training data.</p>
 <pre class="r"><code>trainIndex = createDataPartition(training$classe, p = 0.7,list = FALSE)
 #N = floor(nrow(training)*70/100); trainIndex = sample(1:nrow(training), N, replace=FALSE)
 
@@ -415,29 +415,29 @@ plot(modelFit.rf$finalModel)</code></pre>
 </div>
 <div id="discussion" class="section level1">
 <h1><span class="header-section-number">7</span> Discussion</h1>
-<p>All collected data based on which the prediction model was build were numerical data from accelerometers etc.</p>
+<p>All features data considered were numerical data from accelerometers etc.</p>
 <ul>
 <li>Data were cleaned as discussed above</li>
 </ul>
-<p>As this exercise is just for demontration,I test just two methods:</p>
+<p>As this exercise is just for demontration, I tried two methods:</p>
 <ul>
 <li>Decision Tree (rpart)</li>
 <li>Random Forest (rf)</li>
 </ul>
 <p>Cross validation:</p>
 <ul>
-<li>I have used the training data for cross validation.</li>
-<li>Based on the validation tests, based on this project’s data, the decision tree (rpart) has a poorer performance than random forest (rf).</li>
+<li>Based on the validation tests given this project’s data, the decision tree (rpart) has a poorer performance compared to random forest (rf).</li>
 </ul>
 <p>Computational complexity:</p>
 <ul>
 <li>I have set the number of trees in random forest to 50.</li>
-<li>I used PCA to reduce the parameter space. Note that PCA does not improve the accuracy of prediction in this example, however I used it as an example to reduce the parameter space, which can be helpful in larger datasets.</li>
+<li>I used PCA to reduce the parameter space.</li>
+<li>PCA does not improve the prediction accuracy in this example; however, I used it as an example to reduce the parameter space, which can be helpful in larger datasets.</li>
 </ul>
 </div>
 <div id="testing" class="section level1">
 <h1><span class="header-section-number">8</span> Testing</h1>
-<p>The prediction of the untouched testing set with random forest:</p>
+<p>The prediction of the testing set via random forest:</p>
 <pre><code>##  [1] B A A A A E D B A A B C B A E E A B B B
 ## Levels: A B C D E</code></pre>
 </div>
