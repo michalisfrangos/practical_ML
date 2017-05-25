@@ -258,7 +258,7 @@ plot(modelFit.rf$finalModel)
 
 
 
-All features data considered were numerical data from accelerometers etc. 
+All features data utilized were numerical data from accelerometers etc. 
 
 - Data were cleaned as discussed above
 
