@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r packages , echo=FALSE, message=FALSE,warning=FALSE}
-setwd("C:\\Users/mfrangos/FRANGOS_FOLDER/CoursesCertificates/Coursera_Spec_DataAnalysis_2016/MachineLearning/practical_ML")
+#setwd("C:\\Users/mfrangos/FRANGOS_FOLDER/CoursesCertificates/Coursera_Spec_DataAnalysis_2016/MachineLearning/practical_ML")
 library(caret)
 library(dplyr)
 library(kernlab)
