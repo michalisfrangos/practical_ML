@@ -99,7 +99,7 @@ If PCA flag is 'on' apply PCA to the training and testing dataset.
 
 
 ```r
-flag_PCA = TRUE
+flag_PCA = FALSE
 if (flag_PCA){
   preProc = preProcess(training,method = 'pca',thresh=0.9)
   training.active = predict(preProc,training)
@@ -113,7 +113,7 @@ cat(" Dimension of training data :", dim(training.active))
 ```
 
 ```
-##  Dimension of training data : 19622 15
+##  Dimension of training data : 19622 41
 ```
 
 # Cross validation
@@ -154,33 +154,33 @@ confMX
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1252   59    0  363    0
-##          B  479  282    0  370    8
-##          C  610   25    0  391    0
-##          D  299  100    0  497   68
-##          E  408  124    0  398  152
+##          A 1525   28  114    0    7
+##          B  477  378  284    0    0
+##          C  464   38  524    0    0
+##          D  409  188  367    0    0
+##          E  164  163  272    0  483
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.3709          
-##                  95% CI : (0.3586, 0.3834)
-##     No Information Rate : 0.5179          
-##     P-Value [Acc > NIR] : 1               
+##                Accuracy : 0.4945          
+##                  95% CI : (0.4816, 0.5073)
+##     No Information Rate : 0.5164          
+##     P-Value [Acc > NIR] : 0.9996          
 ##                                           
-##                   Kappa : 0.183           
+##                   Kappa : 0.3395          
 ##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.4108  0.47797       NA  0.24616  0.66667
-## Specificity            0.8513  0.83815   0.8257  0.87920  0.83560
-## Pos Pred Value         0.7479  0.24759       NA  0.51556  0.14048
-## Neg Pred Value         0.5735  0.93510       NA  0.69071  0.98418
-## Prevalence             0.5179  0.10025   0.0000  0.34308  0.03874
-## Detection Rate         0.2127  0.04792   0.0000  0.08445  0.02583
-## Detection Prevalence   0.2845  0.19354   0.1743  0.16381  0.18386
-## Balanced Accuracy      0.6310  0.65806       NA  0.56268  0.75113
+## Sensitivity            0.5018  0.47547  0.33568       NA  0.98571
+## Specificity            0.9476  0.85049  0.88390   0.8362  0.88897
+## Pos Pred Value         0.9110  0.33187  0.51072       NA  0.44640
+## Neg Pred Value         0.6405  0.91214  0.78658       NA  0.99854
+## Prevalence             0.5164  0.13509  0.26525   0.0000  0.08326
+## Detection Rate         0.2591  0.06423  0.08904   0.0000  0.08207
+## Detection Prevalence   0.2845  0.19354  0.17434   0.1638  0.18386
+## Balanced Accuracy      0.7247  0.66298  0.60979       NA  0.93734
 ```
 
 ```r
@@ -206,33 +206,33 @@ confMX
 ## 
 ##           Reference
 ## Prediction    A    B    C    D    E
-##          A 1639   15    8    9    3
-##          B   53 1037   31    8   10
-##          C    4   29  958   21   14
-##          D    6    8   55  887    8
-##          E    6   16   12   22 1026
+##          A 1672    2    0    0    0
+##          B   13 1121    5    0    0
+##          C    0    4 1018    4    0
+##          D    0    0    7  956    1
+##          E    1    1    2    2 1076
 ## 
 ## Overall Statistics
 ##                                           
-##                Accuracy : 0.9426          
-##                  95% CI : (0.9363, 0.9484)
-##     No Information Rate : 0.2902          
+##                Accuracy : 0.9929          
+##                  95% CI : (0.9904, 0.9949)
+##     No Information Rate : 0.2865          
 ##     P-Value [Acc > NIR] : < 2.2e-16       
 ##                                           
-##                   Kappa : 0.9273          
-##  Mcnemar's Test P-Value : 7.601e-07       
+##                   Kappa : 0.991           
+##  Mcnemar's Test P-Value : NA              
 ## 
 ## Statistics by Class:
 ## 
 ##                      Class: A Class: B Class: C Class: D Class: E
-## Sensitivity            0.9596   0.9385   0.9004   0.9366   0.9670
-## Specificity            0.9916   0.9787   0.9859   0.9844   0.9884
-## Pos Pred Value         0.9791   0.9104   0.9337   0.9201   0.9482
-## Neg Pred Value         0.9836   0.9857   0.9782   0.9878   0.9927
-## Prevalence             0.2902   0.1878   0.1808   0.1609   0.1803
-## Detection Rate         0.2785   0.1762   0.1628   0.1507   0.1743
+## Sensitivity            0.9917   0.9938   0.9864   0.9938   0.9991
+## Specificity            0.9995   0.9962   0.9984   0.9984   0.9988
+## Pos Pred Value         0.9988   0.9842   0.9922   0.9917   0.9945
+## Neg Pred Value         0.9967   0.9985   0.9971   0.9988   0.9998
+## Prevalence             0.2865   0.1917   0.1754   0.1635   0.1830
+## Detection Rate         0.2841   0.1905   0.1730   0.1624   0.1828
 ## Detection Prevalence   0.2845   0.1935   0.1743   0.1638   0.1839
-## Balanced Accuracy      0.9756   0.9586   0.9431   0.9605   0.9777
+## Balanced Accuracy      0.9956   0.9950   0.9924   0.9961   0.9989
 ```
 
 ```r
@@ -246,11 +246,11 @@ plot(modelFit.rf$finalModel)
 
 
 ```
-##  Out-of-sample error for decision tree (rpart) : 0.6290569
+##  Out-of-sample error for decision tree (rpart) : 0.5055225
 ```
 
 ```
-##  Out-of-sample error for random forest  (rf) : 0.05743415
+##  Out-of-sample error for random forest  (rf) : 0.007136788
 ```
 
 
@@ -283,6 +283,6 @@ Computational complexity:
 The prediction of the testing set via random forest: 
 
 ```
-##  [1] B A A A A E D B A A B C B A E E A B B B
+##  [1] B A B A A E D B A A B C B A E E A B B B
 ## Levels: A B C D E
 ```
