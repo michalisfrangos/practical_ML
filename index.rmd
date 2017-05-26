@@ -92,7 +92,7 @@ All collected data based on which the prediction model will be built are numeric
 - Remove all variables with no variation
 
 
-```{r cleaning, echo=TRUE, cache = TRUE, message=FALSE,warning=FALSE}
+```{r cleaning, echo=TRUE, cache = FALSE, message=FALSE,warning=FALSE}
 # Collect column names with non-numeric values or integers
 colnames_nonumeric = c("new_window","num_window","user_name",
                        "cvtd_timestamp","raw_timestamp_part_2",
@@ -122,7 +122,7 @@ testing  = testing[complete.cases(testing),]
 ```
 A plot of the histograms of the features given the clean data is given below.
 
-```{r plotfeatures, echo=TRUE, cache = TRUE, message=FALSE,warning=FALSE}
+```{r plotfeatures, echo=TRUE, cache = FALSE, message=FALSE,warning=FALSE}
 # plot histograms of all columns
 indx_classe = names(training) %in% c("classe")
 df = melt(training[,!indx_classe])
@@ -136,8 +136,8 @@ To reduce the parameter space by keeping the dominant componenets of the paramet
 
 If PCA flag is 'on' apply PCA to the training and testing dataset.  
 
-```{r datainfo, echo=TRUE, cache = TRUE}
-flag_PCA = TRUE
+```{r datainfo, echo=TRUE, cache = FALSE}
+flag_PCA = FALSE
 if (flag_PCA){
   preProc = preProcess(training,method = 'pca',thresh=0.9)
   training.active = predict(preProc,training)
@@ -156,7 +156,7 @@ The caret package has the option to set the train options and do cross validatio
 Even though not necessary, I repeat cross-validation manually based on validation data obtained from partitioning the training data.
 
 
-```{r cv, echo=TRUE,cache = TRUE}
+```{r cv, echo=TRUE,cache = FALSE}
 
 trainIndex = createDataPartition(training$classe, p = 0.7,list = FALSE)
 #N = floor(nrow(training)*70/100); trainIndex = sample(1:nrow(training), N, replace=FALSE)
@@ -175,7 +175,7 @@ train_control = trainControl(method="cv", number= 5, allowParallel=T)
 ## Decision tree:
 
 
-```{r rpart, echo=TRUE, cache = TRUE, message=FALSE,warning=FALSE}
+```{r rpart, echo=TRUE, cache = FALSE, message=FALSE,warning=FALSE}
 # Fit model with rpart
 modelFit.rpart = train(classe ~ ., data = training, trControl = train_control, method = "rpart")
 pred = predict(modelFit.rpart, newdata = testing)
@@ -188,7 +188,7 @@ fancyRpartPlot(modelFit.rpart$finalModel)
 
 ## Random forest:
 
-```{r rf, echo=TRUE, cache = TRUE, message=FALSE,warning=FALSE}
+```{r rf, echo=TRUE, cache = FALSE, message=FALSE,warning=FALSE}
 modelFit.rf = train(classe ~ ., data = training, trControl = train_control, method = "rf", ntree= 50)
 pred = predict(modelFit.rf, newdata = testing)
 confMX = confusionMatrix(testing$classe,pred)
